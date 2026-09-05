@@ -11,9 +11,9 @@ def call() {
     try {
         withCredentials([string(credentialsId: 'github-packages-pat', variable: 'GITHUB_STATUS_TOKEN')]) {
             if (isUnix()) {
-                sh 'python3 .devops/coverage_post_github_status.py .devops/TestResults'
+                sh 'python3 .devops/coverage_post_github_status.py .devops/coverage_reports'
             } else {
-                bat '@py .devops\\coverage_post_github_status.py .devops\\TestResults'
+                bat '@py .devops\\coverage_post_github_status.py .devops\\coverage_reports'
             }
         }
     } catch (Throwable t) {
